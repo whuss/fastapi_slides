@@ -8,7 +8,10 @@
     "@marp-team/marp-cli": "^1.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "html": "marp slides.md -o output/slides.html",
+    "pdf": "marp --allow-local-files slides.md -o output/slides.pdf",
+    "powerpoint": "marp --allow-local-files slides.md -o output/slides.pptx"
   },
   "author": "",
   "license": "MIT"

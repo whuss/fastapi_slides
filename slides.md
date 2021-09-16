@@ -9,11 +9,15 @@ Documentation: https://fastapi.tiangolo.com
 
 Source Code: https://github.com/tiangolo/fastapi
 
+---
 
-Markdown Presentation Ecosystem
+# Design goals
 
-https://marp.app/
-
+- Fast
+- Good IDE support (autocompletion)
+- Minimal boilerplate
+- Standards based
+- Easily testable
 ---
 
 ![bg 90%](assets/architecture.drawio.svg)
@@ -22,22 +26,18 @@ https://marp.app/
 
 # Features
 
-
 - Fully async
-- WebSocket support.
-- GraphQL support.
+- Good documentation
+- Full featured:
+  *WebSockets, GraphQL, CORS, GZip, Static Files, Templating, Streaming responses, Background Tasks, Startup and shutdown events, ...*
 - Automatic data validation
-- In-process background tasks.
-- Startup and shutdown events.
-- Test client built on requests.
-- CORS, GZip, Static Files, Streaming responses.
-- Session and Cookie support.
+- Test client built on `requests` API.
 - 100% test coverage.
 - 100% type annotated codebase.
 
 ---
 
-# Powered by standard Python type hints
+# Leverages standard Python type hints
 
 - Type checking
 - IDE auto-completion
@@ -100,12 +100,16 @@ def create_user(user: User):
 - `HTTPException` for custom errors handling
 
 ```python
-@api.get("/user/{user_id}", response_model=User)
+@api.get(
+    "/user/{user_id}",
+    response_model=User,
+    responses={status.HTTP_404_NOT_FOUND: {"model": HTTPError}},
+)
 def get_user(user_id: int):
     user = db.find(user_id)
     if user is None:
         raise HTTPException(
-            status_code=HTTPStatus.NOT_FOUND,
+            status_code=status.HTTP_404_NOT_FOUND,
             detail=f"User '{user_id}' does not exist.",
         )
     return user
@@ -120,7 +124,7 @@ from http import HTTPStatus
 from fastapi.testclient import TestClient
 from main import api
 
-demo_user = {"first_name": "Wilfried", "last_name": "Huss", "age": 42}
+demo_user = {"first_name": "Peter", "last_name": "Higgs", "age": 92}
 
 def test_create_user():
     client = TestClient(api)
@@ -137,6 +141,42 @@ def test_create_user():
     assert response.status_code == HTTPStatus.NOT_FOUND
     assert response.json() == {"detail": "User '1' does not exist."}
 ```
+
+---
+
+# Fuzzing with [Hypothesis](https://hypothesis.readthedocs.io)
+
+```python
+from http import HTTPStatus
+from fastapi.testclient import TestClient
+from hypothesis import given, strategies as st
+from example.example2 import api, User
+
+def test_inserting_random_users():
+    client = TestClient(api)
+
+    @given(st.builds(User, age=st.integers(1, 99)))
+    def insert_user(random_user: User):
+        response = client.put("/user", json=random_user.dict())
+        assert response.status_code == HTTPStatus.OK
+        user_id = int(response.text)
+
+        response = client.get(f"/user/{user_id}")
+        assert response.status_code == HTTPStatus.OK
+        assert response.json() == random_user.dict()
+
+    insert_user()
+```
+
+---
+
+# Schema compliance with [Schemathesis](https://schemathesis.readthedocs.io)
+
+```bash
+❯ schemathesis run --checks all --app=example2:api /openapi.json
+```
+
+![](assets/schemathesis.png)
 
 ---
 
