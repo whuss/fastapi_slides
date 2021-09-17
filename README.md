@@ -25,6 +25,7 @@ Then point your browser to http://0.0.0.0:9001/docs to see the interactive api d
 
 - `make test` for running the included tests
 - `make fuzz` for fuzzing based on the generated OpenAPI schema.
+- `make mypy` for type checking.
 
 ## Building the slides
 

@@ -4,7 +4,7 @@ T = TypeVar("T")
 
 
 class Database(Generic[T]):
-    def __init__(self):
+    def __init__(self) -> None:
         self.db: Dict[int, T] = {}
         self.max_index = 0
 

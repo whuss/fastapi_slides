@@ -32,3 +32,13 @@ test:
 fuzz:
 	$(info * Fuzzing...)
 	$(VENV_ACTIVATE) && schemathesis run --checks all --app=example.main:api /openapi.json
+
+.PHONY: mypy
+mypy:
+	$(info * Type checking...)
+	$(VENV_ACTIVATE) && mypy .
+
+.PHONY: format
+format:
+	$(info * Autoformatting...)
+	$(VENV_ACTIVATE) && black .

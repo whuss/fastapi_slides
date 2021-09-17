@@ -6,7 +6,7 @@ import uvicorn
 
 from example.simple_db import Database
 
-db = Database()
+db: Database = Database()
 
 api = FastAPI()
 
