@@ -48,7 +48,7 @@ Source Code: https://github.com/tiangolo/fastapi
 
 ---
 
-# Basic example
+# Basic example (no data validation)
 
 ```python
 from fastapi import FastAPI
@@ -178,6 +178,28 @@ def test_inserting_random_users():
 
 ![](assets/schemathesis.png)
 
+---
+
+# Schema compliance as a pytest test
+```python
+import schemathesis
+from schemathesis.checks import ALL_CHECKS
+
+from example.example2 import api
+
+schema = schemathesis.from_dict(
+    api.openapi(),
+    data_generation_methods=[
+        schemathesis.DataGenerationMethod.positive,  # generates valid data
+        schemathesis.DataGenerationMethod.negative,  # generates invalid data
+    ],
+)
+
+@schema.parametrize()
+def test_schema_compliance(case):
+    response = case.call_asgi(api)
+    case.validate_response(response, checks=ALL_CHECKS)
+```
 ---
 
 ![bg 70](assets/example.svg)
