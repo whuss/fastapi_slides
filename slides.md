@@ -180,7 +180,7 @@ def test_inserting_random_users():
 # Schema compliance with [Schemathesis](https://schemathesis.readthedocs.io)
 
 ```bash
-❯ schemathesis run --checks all --app=main:api /openapi.json
+❯ schemathesis run --checks all --app=example.main:api /openapi.json
 ```
 
 ![](assets/schemathesis.png)
