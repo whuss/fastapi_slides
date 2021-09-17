@@ -1,7 +1,7 @@
 import schemathesis
 from schemathesis.checks import ALL_CHECKS
 
-from example.example2 import api
+from example.main import api
 
 # Generates valid and also invalid data
 schema = schemathesis.from_dict(

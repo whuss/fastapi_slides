@@ -3,7 +3,7 @@ from http import HTTPStatus
 from fastapi.testclient import TestClient
 from hypothesis import given, strategies
 
-from example.example2 import api, User
+from example.main import api, User
 
 client0 = TestClient(api)
 

@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from fastapi.testclient import TestClient
 
-from example.example2 import api
+from example.main import api
 
 demo_user = {"first_name": "Peter", "last_name": "Higgs", "age": 92}
 

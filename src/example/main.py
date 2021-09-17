@@ -58,4 +58,4 @@ def delete_user(user_id: int):
 
 
 if __name__ == "__main__":
-    uvicorn.run("example2:api", host="0.0.0.0", port=9001, reload=True)
+    uvicorn.run("main:api", host="0.0.0.0", port=9001, reload=True)
