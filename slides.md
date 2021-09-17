@@ -117,6 +117,13 @@ def get_user(user_id: int):
 
 ---
 
+
+# Automatic interactive documentation
+
+![](assets/swagger_combined.png)
+
+---
+
 # Testing
 
 ```python
