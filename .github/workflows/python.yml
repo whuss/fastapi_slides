@@ -27,11 +27,13 @@ jobs:
           pip install poetry
           poetry install
 
-      - name: Lint
+      - name: Type check
         run: |
           poetry run mypy .
-          poetry run black --check .
 
       - name: Test
         run: |
           poetry run pytest
+
+      - name: Format
+          poetry run black --check .
