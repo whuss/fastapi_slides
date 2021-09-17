@@ -97,7 +97,7 @@ def create_user(user: User):
 # Error handling
 
 - Automatic handling of data validation errors
-- `HTTPException` for custom errors handling
+- `HTTPException` for custom error handling
 
 ```python
 @api.get(
