@@ -29,9 +29,9 @@ jobs:
 
       - name: Lint
         run: |
-          mypy .
-          black --check .
+          poetry run mypy .
+          poetry run black --check .
 
       - name: Test
         run: |
-          pytest
+          poetry run pytest
