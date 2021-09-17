@@ -122,7 +122,7 @@ def get_user(user_id: int):
 ```python
 from http import HTTPStatus
 from fastapi.testclient import TestClient
-from main import api
+from example.main import api
 
 demo_user = {"first_name": "Peter", "last_name": "Higgs", "age": 92}
 
@@ -150,7 +150,7 @@ def test_create_user():
 from http import HTTPStatus
 from fastapi.testclient import TestClient
 from hypothesis import given, strategies as st
-from example.example2 import api, User
+from example.main import api, User
 
 def test_inserting_random_users():
     client = TestClient(api)
@@ -173,7 +173,7 @@ def test_inserting_random_users():
 # Schema compliance with [Schemathesis](https://schemathesis.readthedocs.io)
 
 ```bash
-❯ schemathesis run --checks all --app=example2:api /openapi.json
+❯ schemathesis run --checks all --app=main:api /openapi.json
 ```
 
 ![](assets/schemathesis.png)
@@ -185,7 +185,7 @@ def test_inserting_random_users():
 import schemathesis
 from schemathesis.checks import ALL_CHECKS
 
-from example.example2 import api
+from example.main import api
 
 schema = schemathesis.from_dict(
     api.openapi(),
