@@ -4,9 +4,9 @@
 
 ## Installation instruction
 
-The full example code referenced in the slides is in the [src](./src) directory.
+The full example code referenced in the slides is in the [src](./src) directory. The main code is in the file [src/example/main.py](./src/example/main.py).
 
-Python version 3.8+ is required to run the examples.
+**Note:** Python version 3.8+ is required to run the examples.
 
 For installation switch to the [src](./src) directory and run:
 
