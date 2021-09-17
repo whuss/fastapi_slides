@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "html": "marp slides.md -o output/slides.html",
+    "html": "marp slides.md -o output/index.html",
     "pdf": "marp --allow-local-files slides.md -o output/slides.pdf",
     "powerpoint": "marp --allow-local-files slides.md -o output/slides.pptx"
   },
