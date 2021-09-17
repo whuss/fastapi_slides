@@ -1,6 +1,6 @@
 # Overview on [FastAPI](https://fastapi.tiangolo.com)
 
-[Pdf version of the slides](https://whuss.github.io/fastapi_slides/slides.pdf)
+[PDF version of the slides](https://whuss.github.io/fastapi_slides/slides.pdf)
 
 ## Installation instruction
 
@@ -43,5 +43,5 @@ Then build the html version of the slides with:
 ❯ npm run html
 ```
 
-Pdf and Powerpoint versions of the slides can be build using `npm run pdf` or `npm run html`.
+PDF and Powerpoint versions of the slides can be build using `npm run pdf` or `npm run html`.
 
