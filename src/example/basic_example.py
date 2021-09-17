@@ -1,3 +1,6 @@
+# Basic example without any data validation.
+# For the full example see main.py
+
 from fastapi import FastAPI
 import uvicorn
 
@@ -20,5 +23,11 @@ def create_user(user):
     return user_id
 
 
+@api.delete("/user")
+def delete_user(user_id):
+    deleted_user = db.delete(user_id)
+    return deleted_user
+
+
 if __name__ == "__main__":
-    uvicorn.run("example1:api", host="0.0.0.0", port=9001, reload=True)
+    uvicorn.run("basic_example:api", host="0.0.0.0", port=9001, reload=True)
