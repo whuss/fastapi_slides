@@ -36,4 +36,5 @@ jobs:
           poetry run pytest
 
       - name: Format
+        run: |
           poetry run black --check .
