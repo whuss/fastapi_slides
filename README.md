@@ -44,5 +44,4 @@ Then build the html version of the slides with:
 ❯ npm run html
 ```
 
-PDF and Powerpoint versions of the slides can be build using `npm run pdf` or `npm run html`.
-
+PDF and Powerpoint versions of the slides can be build using `npm run pdf` or `npm run powerpoint`.
