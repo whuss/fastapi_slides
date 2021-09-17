@@ -122,3 +122,6 @@ dist
 
 # Output directory
 output/
+
+# Hypothesis cache
+.hypothesis/
